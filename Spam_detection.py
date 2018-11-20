@@ -52,7 +52,7 @@ for i in tqdm.tqdm(range(len(spam))):
     text = spam[i][index + len(subject):]
     if text != b'':
         try:
-            spam[i] = set(text.decode("utf-8").replace("\n"," ").replace("\r"," ").translate(tbl).lower().split(' '))
+            spam[i] = text.decode("utf-8").replace("\n"," ").replace("\r"," ").translate(tbl).lower()
         except UnicodeDecodeError:
             to_del.append(i)
     else:
@@ -71,7 +71,7 @@ for i in tqdm.tqdm(range(len(ham))):
     text = ham[i][index + len(subject):]
     if text != b'':
         try:
-            ham[i] = set(text.decode("utf-8").replace("\n"," ").replace("\r"," ").translate(tbl).lower().split(' '))
+            ham[i] = text.decode("utf-8").replace("\n"," ").replace("\r"," ").translate(tbl).lower()
         except UnicodeDecodeError:  
             to_del.append(i)
     else:
