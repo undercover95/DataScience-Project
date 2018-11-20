@@ -5,7 +5,6 @@ Created on Wed Nov  7 15:50:35 2018
 @author: portable Otto
 """
 
-import psutil
 import glob
 import tarfile
 import pandas as pd
@@ -18,8 +17,12 @@ import sys
 tbl = dict.fromkeys(i for i in range(sys.maxunicode)
                     if unicodedata.category(chr(i)).startswith('P'))
 
+<< << << < HEAD
 # returns the percentile of used ram, using as a break to not shutdown everything
 psutil.virtual_memory().percent
+== == == =
+# psutil.virtual_memory().percent #returns the percentile of used ram, using as a break to not shutdown everything
+>>>>>> > 4f20f2038a9cfb7bc1c6b085881909f770f69d0d
 
 path1 = 'Data/*gz'
 files = glob.glob(path1)
@@ -55,8 +58,9 @@ for i in tqdm.tqdm(range(len(spam))):
     text = spam[i][index + len(subject):]
     if text != b'':
         try:
-            spam[i] = set(text.decode("utf-8").replace("\n",
-                                                       " ").replace("\r", " ").translate(tbl).lower())
+
+            spam[i] = text.decode("utf-8").replace("\n",
+                                  " ").replace("\r", " ").translate(tbl).lower()
         except UnicodeDecodeError:
             to_del.append(i)
     else:
@@ -76,9 +80,14 @@ for i in tqdm.tqdm(range(len(ham))):
     text = ham[i][index + len(subject):]
     if text != b'':
         try:
+<< << << < HEAD
             ham[i] = set(text.decode("utf-8").replace("\n",
                                                       " ").replace("\r", " ").translate(tbl).lower().split(' '))
         except UnicodeDecodeError:
+=======
+            ham[i] = text.decode("utf-8").replace("\n"," ").replace("\r"," ").translate(tbl).lower()
+        except UnicodeDecodeError:  
+>>>>>>> 4f20f2038a9cfb7bc1c6b085881909f770f69d0d
             to_del.append(i)
     else:
         ham[i] = ''
