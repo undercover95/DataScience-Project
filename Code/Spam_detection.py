@@ -19,9 +19,8 @@ tbl = dict.fromkeys(i for i in range(sys.maxunicode) if unicodedata.category(chr
 
 psutil.virtual_memory().percent #returns the percentile of used ram, using as a break to not shutdown everything
 
-path1 = 'Data/*gz'
-path2 = 'Data/Enron/PreProcessed/*gz'
-files = glob.glob(path1)+glob.glob(path2)
+path1 = './Data/*gz'
+files = glob.glob(path1)
 
 data = []
 
