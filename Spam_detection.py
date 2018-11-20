@@ -19,7 +19,7 @@ tbl = dict.fromkeys(i for i in range(sys.maxunicode) if unicodedata.category(chr
 
 psutil.virtual_memory().percent #returns the percentile of used ram, using as a break to not shutdown everything
 
-path1 = './Data/*gz'
+path1 = 'Data/*gz'
 files = glob.glob(path1)
 
 data = []
@@ -40,7 +40,6 @@ for name in files[2:]:
             if f is not None:
                 spam.append(f.read())
  
-print('Los gehts!')
                
 subject = b"\n"
 spam_subjects = []
@@ -62,8 +61,6 @@ for i in tqdm.tqdm(range(len(spam))):
 for item in reversed(to_del): #removing all emails that couldnt be decoded
     del spam[item]
     del spam_subjects[item]
-
-print('Weiter gehts!')
 
 to_del = []
 
