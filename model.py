@@ -31,4 +31,3 @@ def VectTfidf(X_train, X_test):
 
 
 train_matrix_count, test_matrix_count = VectCount(X_train, X_test)
-
