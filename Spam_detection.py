@@ -5,7 +5,6 @@ Created on Wed Nov  7 15:50:35 2018
 @author: portable Otto
 """
 
-import psutil
 import glob
 import tarfile
 import pandas as pd
@@ -17,7 +16,7 @@ import sys
 
 tbl = dict.fromkeys(i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
 
-psutil.virtual_memory().percent #returns the percentile of used ram, using as a break to not shutdown everything
+#psutil.virtual_memory().percent #returns the percentile of used ram, using as a break to not shutdown everything
 
 path1 = 'Data/*gz'
 files = glob.glob(path1)
