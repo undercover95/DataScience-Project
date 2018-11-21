@@ -20,13 +20,13 @@ X_train, X_test, y_train, y_test = train_test_split(email_df.clean_msg, email_df
 
 def VectCount(X_train, X_test):
     vectorizer_count = CountVectorizer(token_pattern = r'\b\w+\b')
-    train_matrix_count = vectorizer_count.fit(X_train)
+    train_matrix_count = vectorizer_count.fit_transform(X_train)
     test_matrix_count = vectorizer_count.transform(X_test)
     return train_matrix_count, test_matrix_count
 
 def VectTfidf(X_train, X_test):
     vectorizer_tfidf = TfidfVectorizer(token_pattern = r'\b\w+\b')
-    train_matrix_tfidf = vectorizer_tfidf.fit(X_train)
+    train_matrix_tfidf = vectorizer_tfidf.fit_transform(X_train)
     test_matrix_tfidf = vectorizer_tfidf.transform(X_test)
     return train_matrix_tfidf, test_matrix_tfidf
 
@@ -39,9 +39,9 @@ model_bayes.predict(test_matrix_count)
 model_bayes.score(test_matrix_count, y_test)
 
 
-"""
+
 model_linear = LinearRegression()
 model_linear.fit(train_matrix_count, y_train)
 model_linear.predict(test_matrix_count)
 model_linear.score(test_matrix_count, y_test)
-"""
+
