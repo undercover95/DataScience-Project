@@ -16,7 +16,7 @@ from sklearn.naive_bayes import MultinomialNB
 
 email_df = pd.read_pickle('email_cleaned')
 
-X_train, X_test, y_train, y_test = train_test_split(email_df.clean_msg, email_df.target, test_size=0.3, random_state=25)
+X_train, X_test, y_train, y_test = train_test_split(email_df.clean_msg, email_df.target, test_size=0.3)
 
 def VectCount(X_train, X_test):
     vectorizer_count = CountVectorizer(token_pattern = r'\b\w+\b')
@@ -26,7 +26,7 @@ def VectCount(X_train, X_test):
     return train_matrix_count, test_matrix_count, features
 
 def VectTfidf(X_train, X_test):
-    vectorizer_tfidf = TfidfVectorizer(token_pattern = r'\b\w+\b')
+    vectorizer_tfidf = TfidfVectorizer(token_pattern = r'\b\w+\b', norm=None, use_idf=True)
     train_matrix_tfidf = vectorizer_tfidf.fit_transform(X_train)
     test_matrix_tfidf = vectorizer_tfidf.transform(X_test)
     features = vectorizer_tfidf.get_feature_names()
@@ -58,6 +58,8 @@ print('Model number 2')
 
 model_bayes_Tfidf, coefs_sorted_Tfidf, features_sorted_Tfidf = model('Bayes',train_matrix_Tfidf, test_matrix_Tfidf, features_Tfidf)
 
-#model_linear_count = model('Linear',train_matrix_count, test_matrix_count, features_count)
 
+
+#### needs forever to compile:
+#model_linear_count = model('Linear',train_matrix_count, test_matrix_count, features_count)
 #model_linear_Tfidf = model('Linear',train_matrix_Tfidf, test_matrix_Tfidf, features_Tfidf)
