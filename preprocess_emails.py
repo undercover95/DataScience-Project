@@ -61,3 +61,30 @@ def decode_emails(emails):
         del subjects[item]
 
     return emails  # return decoded emails
+
+def merge_data(spam, ham):
+    spam_data = {
+        'clean_msg': spam,
+        'target': np.ones(len(spam))*(-1)
+    }
+    spam_data_df = pd.DataFrame(data=spam_data)
+
+    ham_data = {
+        'clean_msg': ham,
+        'target': np.ones(len(ham))
+    }
+    ham_data_df = pd.DataFrame(data=ham_data)
+
+    data_df = pd.concat([spam_data_df, ham_data_df])
+    data_df = data_df.reset_index(drop=True)
+
+    return data_df
+
+def clean_email_data_and_save(output_filename):
+    spam, ham = load_data_files(path='Data/*gz')
+
+    spam = pe.decode_emails(spam)
+    ham = pe.decode_emails(ham)
+
+    email_data_df = merge_data(spam, ham)
+    email_data_df.to_pickle(output_filename)
