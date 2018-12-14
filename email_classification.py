@@ -33,14 +33,16 @@ def perform_model(model_obj, train_matrix, test_matrix, features):
     test_acc = accuracy(y_test_pred, y_test)
     #model.predict_proba(test_matrix)
     return model, coefs_sorted, features_sorted, train_acc, test_acc
+    
 
+for classifier in classifiers:
+    model_count, coefs_sorted_count, features_sorted_count, train_acc_count, test_acc_count = perform_model(classifier, train_matrix_count, test_matrix_count, features_count)
+    model_Tfidf, coefs_sorted_Tfidf, features_sorted_Tfidf, train_acc_Tfidf, test_acc_Tfidf = perform_model(classifier, train_matrix_Tfidf, test_matrix_Tfidf, features_Tfidf)
 
-
-model_bayes_count, coefs_sorted_count, features_sorted_count, train_acc_count, test_acc_count = perform_model(classifiers[0], train_matrix_count, test_matrix_count, features_count)
-model_bayes_Tfidf, coefs_sorted_Tfidf, features_sorted_Tfidf, train_acc_Tfidf, test_acc_Tfidf = perform_model(classifiers[0], train_matrix_Tfidf, test_matrix_Tfidf, features_Tfidf)
-
-print("Count Vectorizer")
-print("Accuracy for: \t train set: %.3f \t test set: %.3f" % (train_acc_count, test_acc_count))
-print()
-print("Tfidf Vectorizer")
-print("Accuracy for: \t train set: %.3f \t test set: %.3f" % (train_acc_Tfidf, test_acc_Tfidf))
+    print("Model name: %s" % classifier['name'])
+    print("------------------------------------")
+    print("Count Vectorizer")
+    print("Accuracy for: \t train set: %.3f \t test set: %.3f" % (train_acc_count, test_acc_count))
+    print("Tfidf Vectorizer")
+    print("Accuracy for: \t train set: %.3f \t test set: %.3f" % (train_acc_Tfidf, test_acc_Tfidf))
+    print()
