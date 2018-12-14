@@ -38,5 +38,6 @@ data_df = merge_data(spam, ham)
 # np.save('ham.npy',ham)
 # np.save('ham_sub.npy',ham_subjects)
 
+print(data_df)
 data_df.to_pickle('email_cleaned')
 # pd.read_pickle(file_name)
